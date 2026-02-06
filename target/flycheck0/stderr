@@ -1,0 +1,103 @@
+   0.003804541s  INFO prepare_target{force=false package_id=cipher_pixel_cli v0.1.0 (/Users/macbookpro/Desktop/cipherpixel/cipher_pixel_cli) target="cipher_pixel_cli"}: cargo::core::compiler::fingerprint: fingerprint error for cipher_pixel_cli v0.1.0 (/Users/macbookpro/Desktop/cipherpixel/cipher_pixel_cli)/Check { test: false }/TargetInner { name: "cipher_pixel_cli", doc: true, ..: with_path("/Users/macbookpro/Desktop/cipherpixel/cipher_pixel_cli/src/main.rs", Edition2024) }
+   0.003818791s  INFO prepare_target{force=false package_id=cipher_pixel_cli v0.1.0 (/Users/macbookpro/Desktop/cipherpixel/cipher_pixel_cli) target="cipher_pixel_cli"}: cargo::core::compiler::fingerprint:     err: failed to read `/Users/macbookpro/Desktop/cipherpixel/target/debug/.fingerprint/cipher_pixel_cli-ae1be2dc87121d12/bin-cipher_pixel_cli`
+
+Caused by:
+    No such file or directory (os error 2)
+
+Stack backtrace:
+   0: std::backtrace::Backtrace::create
+   1: std::backtrace::Backtrace::capture
+   2: cargo_util::paths::read_bytes
+   3: cargo_util::paths::read
+   4: cargo::core::compiler::fingerprint::_compare_old_fingerprint
+   5: cargo::core::compiler::fingerprint::prepare_target
+   6: cargo::core::compiler::compile
+   7: <cargo::core::compiler::build_runner::BuildRunner>::compile
+   8: cargo::ops::cargo_compile::compile_ws
+   9: cargo::ops::cargo_compile::compile_with_exec
+  10: cargo::ops::cargo_compile::compile
+  11: cargo::commands::check::exec
+  12: <cargo::cli::Exec>::exec
+  13: cargo::main
+  14: std::sys::backtrace::__rust_begin_short_backtrace::<fn(), ()>
+  15: std::rt::lang_start::<()>::{closure#0}
+  16: std::rt::lang_start_internal
+  17: _main
+   0.018393750s  INFO prepare_target{force=false package_id=cipher_pixel_cli v0.1.0 (/Users/macbookpro/Desktop/cipherpixel/cipher_pixel_cli) target="cipher_pixel_cli"}: cargo::core::compiler::fingerprint: fingerprint error for cipher_pixel_cli v0.1.0 (/Users/macbookpro/Desktop/cipherpixel/cipher_pixel_cli)/Check { test: true }/TargetInner { name: "cipher_pixel_cli", doc: true, ..: with_path("/Users/macbookpro/Desktop/cipherpixel/cipher_pixel_cli/src/main.rs", Edition2024) }
+   0.018409625s  INFO prepare_target{force=false package_id=cipher_pixel_cli v0.1.0 (/Users/macbookpro/Desktop/cipherpixel/cipher_pixel_cli) target="cipher_pixel_cli"}: cargo::core::compiler::fingerprint:     err: failed to read `/Users/macbookpro/Desktop/cipherpixel/target/debug/.fingerprint/cipher_pixel_cli-6e291c2cbd01bbfb/test-bin-cipher_pixel_cli`
+
+Caused by:
+    No such file or directory (os error 2)
+
+Stack backtrace:
+   0: std::backtrace::Backtrace::create
+   1: std::backtrace::Backtrace::capture
+   2: cargo_util::paths::read_bytes
+   3: cargo_util::paths::read
+   4: cargo::core::compiler::fingerprint::_compare_old_fingerprint
+   5: cargo::core::compiler::fingerprint::prepare_target
+   6: cargo::core::compiler::compile
+   7: <cargo::core::compiler::build_runner::BuildRunner>::compile
+   8: cargo::ops::cargo_compile::compile_ws
+   9: cargo::ops::cargo_compile::compile_with_exec
+  10: cargo::ops::cargo_compile::compile
+  11: cargo::commands::check::exec
+  12: <cargo::cli::Exec>::exec
+  13: cargo::main
+  14: std::sys::backtrace::__rust_begin_short_backtrace::<fn(), ()>
+  15: std::rt::lang_start::<()>::{closure#0}
+  16: std::rt::lang_start_internal
+  17: _main
+   0.018592625s  INFO prepare_target{force=false package_id=cipher_pixel_lib v0.1.0 (/Users/macbookpro/Desktop/cipherpixel/cipher_pixel_lib) target="cipher_pixel_lib"}: cargo::core::compiler::fingerprint: fingerprint error for cipher_pixel_lib v0.1.0 (/Users/macbookpro/Desktop/cipherpixel/cipher_pixel_lib)/Check { test: false }/TargetInner { name_inferred: true, ..: lib_target("cipher_pixel_lib", ["lib"], "/Users/macbookpro/Desktop/cipherpixel/cipher_pixel_lib/src/lib.rs", Edition2024) }
+   0.018796916s  INFO prepare_target{force=false package_id=cipher_pixel_lib v0.1.0 (/Users/macbookpro/Desktop/cipherpixel/cipher_pixel_lib) target="cipher_pixel_lib"}: cargo::core::compiler::fingerprint:     err: failed to read `/Users/macbookpro/Desktop/cipherpixel/target/debug/.fingerprint/cipher_pixel_lib-41602ad2aacf6197/lib-cipher_pixel_lib`
+
+Caused by:
+    No such file or directory (os error 2)
+
+Stack backtrace:
+   0: std::backtrace::Backtrace::create
+   1: std::backtrace::Backtrace::capture
+   2: cargo_util::paths::read_bytes
+   3: cargo_util::paths::read
+   4: cargo::core::compiler::fingerprint::_compare_old_fingerprint
+   5: cargo::core::compiler::fingerprint::prepare_target
+   6: cargo::core::compiler::compile
+   7: <cargo::core::compiler::build_runner::BuildRunner>::compile
+   8: cargo::ops::cargo_compile::compile_ws
+   9: cargo::ops::cargo_compile::compile_with_exec
+  10: cargo::ops::cargo_compile::compile
+  11: cargo::commands::check::exec
+  12: <cargo::cli::Exec>::exec
+  13: cargo::main
+  14: std::sys::backtrace::__rust_begin_short_backtrace::<fn(), ()>
+  15: std::rt::lang_start::<()>::{closure#0}
+  16: std::rt::lang_start_internal
+  17: _main
+   0.018973541s  INFO prepare_target{force=false package_id=cipher_pixel_lib v0.1.0 (/Users/macbookpro/Desktop/cipherpixel/cipher_pixel_lib) target="cipher_pixel_lib"}: cargo::core::compiler::fingerprint: fingerprint error for cipher_pixel_lib v0.1.0 (/Users/macbookpro/Desktop/cipherpixel/cipher_pixel_lib)/Check { test: true }/TargetInner { name_inferred: true, ..: lib_target("cipher_pixel_lib", ["lib"], "/Users/macbookpro/Desktop/cipherpixel/cipher_pixel_lib/src/lib.rs", Edition2024) }
+   0.018979750s  INFO prepare_target{force=false package_id=cipher_pixel_lib v0.1.0 (/Users/macbookpro/Desktop/cipherpixel/cipher_pixel_lib) target="cipher_pixel_lib"}: cargo::core::compiler::fingerprint:     err: failed to read `/Users/macbookpro/Desktop/cipherpixel/target/debug/.fingerprint/cipher_pixel_lib-3b4b9bf7479a7489/test-lib-cipher_pixel_lib`
+
+Caused by:
+    No such file or directory (os error 2)
+
+Stack backtrace:
+   0: std::backtrace::Backtrace::create
+   1: std::backtrace::Backtrace::capture
+   2: cargo_util::paths::read_bytes
+   3: cargo_util::paths::read
+   4: cargo::core::compiler::fingerprint::_compare_old_fingerprint
+   5: cargo::core::compiler::fingerprint::prepare_target
+   6: cargo::core::compiler::compile
+   7: <cargo::core::compiler::build_runner::BuildRunner>::compile
+   8: cargo::ops::cargo_compile::compile_ws
+   9: cargo::ops::cargo_compile::compile_with_exec
+  10: cargo::ops::cargo_compile::compile
+  11: cargo::commands::check::exec
+  12: <cargo::cli::Exec>::exec
+  13: cargo::main
+  14: std::sys::backtrace::__rust_begin_short_backtrace::<fn(), ()>
+  15: std::rt::lang_start::<()>::{closure#0}
+  16: std::rt::lang_start_internal
+  17: _main
+    Checking cipher_pixel_lib v0.1.0 (/Users/macbookpro/Desktop/cipherpixel/cipher_pixel_lib)
+    Checking cipher_pixel_cli v0.1.0 (/Users/macbookpro/Desktop/cipherpixel/cipher_pixel_cli)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.15s

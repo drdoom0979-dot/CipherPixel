@@ -1,0 +1,8 @@
+[workspace]
+
+members = [
+    "cipher_pixel_lib",
+    "cipher_pixel_cli",
+]
+
+resolver = "2"

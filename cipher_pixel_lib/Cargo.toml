@@ -4,5 +4,6 @@ version = "0.1.0"
 edition = "2024"
 
 [dependencies]
-statrs = "0.16"
+# Tu motor central
 image = "0.24"
+statrs = "0.16" # Necesaria para los p-values de tus tests

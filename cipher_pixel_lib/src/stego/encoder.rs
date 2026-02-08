@@ -1,8 +1,25 @@
-use image::{DynamicImage, GenericImageView};
+use image::{DynamicImage, GenericImageView, open};
+
 
 pub struct Encoder;
 
 impl Encoder {
+
+    pub fn encode(image_path: &str, data_bits: &[u8], output_path: &str) -> Result<(), String> {
+        // 1. Abrir la imagen desde la ruta
+        let mut img = open(image_path)
+            .map_err(|e| format!("Error al abrir imagen: {}", e))?;
+
+        // 2. Llamar a tu lógica LSB existente
+        Self::hide(&mut img, data_bits)?;
+
+        // 3. Guardar el resultado en la ruta de salida
+        img.save(output_path)
+            .map_err(|e| format!("Error al guardar imagen: {}", e))?;
+
+        Ok(())
+    }
+
     /// Oculta una secuencia de bits en una imagen usando LSB
     pub fn hide(img: &mut DynamicImage, message_bits: &[u8]) -> Result<(), String> {
         let (width, height) = img.dimensions();

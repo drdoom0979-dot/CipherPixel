@@ -19,7 +19,12 @@ pub use crate::stego::decoder::Decoder;
 pub use crate::utils::bit_tools::BitTools;
 
 /// Función de utilidad para correr todos los tests de una vez
-pub fn run_security_audit(bits: &[u8]) {
+pub fn run_security_audit(data_bytes: &[u8]) {
+
+    let bits: Vec<u8> = data_bytes.iter()
+        .flat_map(|&byte| (0..8).rev().map(move |i| (byte >> i) & 1))
+        .collect();
+
     // 1. Definimos los tests NIST (que usan p-value)
     let nist_tests: Vec<(String, Box<dyn StatisticalTest>)> = vec![
         ("Monobit Test".to_string(), Box::new(Monobit)),
@@ -32,7 +37,7 @@ pub fn run_security_audit(bits: &[u8]) {
 
     println!("\n--- Security Audit (NIST Standards) ---");
     for (name, test) in nist_tests {
-        let p_value = test.verify(bits);
+        let p_value = test.verify(&bits);
         
         if p_value.is_nan() {
             println!("{:<16}: [ERROR] Datos insuficientes", name);
@@ -43,7 +48,7 @@ pub fn run_security_audit(bits: &[u8]) {
     }
 
     // 3. Agregamos el análisis de Entropía al final
-    let entropy_val = shannon.verify(bits);
+    let entropy_val = shannon.verify(data_bytes);
     println!("--- Information Theory Analysis ---");
     println!("{:<16}: {:.4} bits per byte", "Shannon Entropy", entropy_val);
     

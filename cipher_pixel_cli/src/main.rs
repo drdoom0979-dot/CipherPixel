@@ -9,6 +9,7 @@ use ui::Interface;
 #[derive(Parser)]
 #[command(
     name = "CipherPixel",
+    bin_name = "cipherpixel",
     author = "Moon Dynamics",
     version = "1.0",
     about = "🔒 Esteganografía LSB + Cifrado AES-256-GCM",

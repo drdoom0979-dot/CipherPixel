@@ -9,20 +9,20 @@ impl Encoder {
         let mut img = open(image_path)
             .map_err(|e| format!("Error al abrir imagen: {}", e))?;
 
-        // 2. Ejecutamos la ocultación LSB
+        // 2. AUDITORÍA PREVIA (Seguridad Proactiva)
+        // Es mejor auditar 'data' antes de esconderlo para asegurar alta entropía
+        println!("--- Iniciando Auditoría de Seguridad de Moon Dynamics ---");
+        crate::run_security_audit(data); 
+
+        // 3. Ejecutamos la ocultación LSB
+        // Aquí podrías incluso hacer que hide devuelva un error si la auditoría falla
         Self::hide(&mut img, data)?;
 
-        // --- NUEVO: Auditoría de Seguridad Post-Ocultación ---
-        // Extraemos los bits modificados para ver si "cantan" ante los tests
-        let bits_audit = crate::utils::bit_tools::BitTools::extract_all_lsb(&img);
-        
-        println!("🛡️ Iniciando Auditoría de Seguridad de Moon Dynamics...");
-        crate::run_security_audit(&bits_audit);
-        // -----------------------------------------------------
-
-        // 3. Guardamos el resultado
+        // 4. Guardamos el resultado
         img.save(output_path)
             .map_err(|e| format!("Error al guardar imagen: {}", e))?;
+
+        println!("Proceso completado: Secreto oculto en {}", output_path);
 
         Ok(())
     }

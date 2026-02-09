@@ -1,6 +1,21 @@
+use image::{GenericImageView, DynamicImage};
+
 pub struct BitTools;
 
 impl BitTools {
+
+    pub fn extract_all_lsb(img: &DynamicImage) -> Vec<u8> {
+        let mut bits = Vec::new();
+        // Recorremos cada píxel para auditar la "capa" LSB completa
+        for (_x, _y, pixel) in img.pixels() {
+            // Auditamos canales R, G y B (ignoramos Alpha usualmente para mayor sigilo)
+            for i in 0..3 {
+                bits.push((pixel[i] & 1) as u8);
+            }
+        }
+        bits
+    }
+
     /// Convierte un String de texto en un vector de bits (0s y 1s)
     pub fn string_to_bits(message: &str) -> Vec<u8> {
         let mut bits = Vec::new();

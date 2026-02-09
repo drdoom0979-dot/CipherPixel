@@ -6,10 +6,34 @@ mod commands;
 use clap::{Parser, Subcommand};
 use ui::Interface;
 
-/// CipherPixel CLI - Moon Dynamics
 #[derive(Parser)]
-#[command(name = "cipher_pixel")]
-#[command(about = "Oculta y recupera archivos en imágenes con cifrado AES-256-GCM", long_about = None)]
+#[command(
+    name = "CipherPixel",
+    author = "Moon Dynamics",
+    version = "1.0",
+    about = "🔒 Esteganografía LSB + Cifrado AES-256-GCM",
+    help_template = "{before-help}
+{name} {version}
+{author-with-newline}
+{about-section}
+
+MODO DE USO:
+    {usage}
+
+{all-args}
+
+EJEMPLOS DE HELP:
+    1. Ocultar un reporte en una foto:
+       cipherpixel hide -h
+
+    2. Recuperar el archivo:
+       cipherpixel extract -h
+
+Para más detalles de un comando usa:
+    cipherpixel <COMMAND> --help
+{after-help}"
+)]
+
 struct Cli {
     #[command(subcommand)]
     command: Commands,
@@ -19,44 +43,53 @@ struct Cli {
 enum Commands {
     /// Oculta un archivo dentro de una imagen (Cifrado + Esteganografía)
     Hide {
-        /// Ruta de la imagen original (portadora)
-        #[arg(short, long)]
+        #[arg(short, long, value_name = "RUTA", help = "Imagen original donde se esconderá el secreto")]
         image: String,
 
-        /// Ruta del archivo que quieres ocultar (PDF, Script, etc)
-        #[arg(short, long)]
+        #[arg(short, long, value_name = "ARCHIVO", help = "Archivo que deseas ocultar (PDF, TXT, etc.)")]
         file: String,
 
-        /// Contraseña para cifrar los datos
-        #[arg(short, long)]
+        #[arg(short, long, value_name = "PASSWORD", help = "Clave de cifrado AES-256")]
         pass: String,
 
-        /// Ruta de salida para la nueva imagen
-        #[arg(short, long, default_value = "output.png")]
+        #[arg(short, long, value_name = "Result",default_value = "output.png", help = "Nombre de la imagen resultante")]
         output: String,
     },
     
     /// Extrae y descifra un archivo de una imagen portadora
     Extract {
-        /// Ruta de la imagen que contiene el archivo oculto
-        #[arg(short, long)]
+        #[arg(
+            short, 
+            long, 
+            value_name = "IMAGEN", 
+            help = "Ruta de la imagen que contiene el archivo oculto"
+        )]
         image: String,
 
-        /// Contraseña para descifrar los datos
-        #[arg(short, long)]
+        #[arg(
+            short, 
+            long, 
+            value_name = "PASSWORD", 
+            help = "Contraseña para descifrar los datos (debe coincidir con la de ocultación)"
+        )]
         pass: String,
 
-        /// Ruta y nombre del archivo a recuperar (ej: secreto_recuperado.pdf)
-        #[arg(short, long)]
+        #[arg(
+            short, 
+            long, 
+            value_name = "DESTINO", 
+            help = "Nombre y extensión del archivo a recuperar (ej: secreto_recuperado.pdf)"
+        )]
         output: String,
     },
 }
 
 fn main() {
     // El banner siempre se muestra al inicio para dar identidad a la herramienta
-    Interface::welcome_banner();
 
     let cli = Cli::parse();
+
+    Interface::welcome_banner();
 
     match &cli.command {
         Commands::Hide { image, file, pass, output } => {

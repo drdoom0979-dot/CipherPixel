@@ -5,14 +5,22 @@ pub struct Encoder;
 impl Encoder {
     /// Función principal para abrir, ocultar y guardar la imagen
     pub fn encode(image_path: &str, data: &[u8], output_path: &str) -> Result<(), String> {
-        // 1. Cargamos la imagen original (portadora)
+        // 1. Cargamos la imagen original
         let mut img = open(image_path)
             .map_err(|e| format!("Error al abrir imagen: {}", e))?;
 
         // 2. Ejecutamos la ocultación LSB
         Self::hide(&mut img, data)?;
 
-        // 3. Guardamos el resultado en formato PNG (para no perder datos por compresión)
+        // --- NUEVO: Auditoría de Seguridad Post-Ocultación ---
+        // Extraemos los bits modificados para ver si "cantan" ante los tests
+        let bits_audit = crate::utils::bit_tools::BitTools::extract_all_lsb(&img);
+        
+        println!("🛡️ Iniciando Auditoría de Seguridad de Moon Dynamics...");
+        crate::run_security_audit(&bits_audit);
+        // -----------------------------------------------------
+
+        // 3. Guardamos el resultado
         img.save(output_path)
             .map_err(|e| format!("Error al guardar imagen: {}", e))?;
 

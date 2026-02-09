@@ -9,11 +9,6 @@ impl Encoder {
         let mut img = open(image_path)
             .map_err(|e| format!("Error al abrir imagen: {}", e))?;
 
-        // 2. AUDITORÍA PREVIA (Seguridad Proactiva)
-        // Es mejor auditar 'data' antes de esconderlo para asegurar alta entropía
-        println!("--- Iniciando Auditoría de Seguridad de Moon Dynamics ---");
-        crate::run_security_audit(data); 
-
         // 3. Ejecutamos la ocultación LSB
         // Aquí podrías incluso hacer que hide devuelva un error si la auditoría falla
         Self::hide(&mut img, data)?;

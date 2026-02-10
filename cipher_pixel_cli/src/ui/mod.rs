@@ -1,5 +1,5 @@
 use std::io::{self, Write};
-
+use inquire::{Text, Password};
 pub struct Interface;
 
 impl Interface {
@@ -36,5 +36,19 @@ impl Interface {
         }
         print!("] {:.2}%", (current as f64 / total as f64) * 100.0);
         io::stdout().flush().unwrap();
+    }
+
+    pub fn ask_password(prompt: &str) -> String {
+        Password::new(prompt)
+            .with_display_mode(inquire::PasswordDisplayMode::Masked)
+            .prompt()
+            .unwrap_or_default()
+    }
+
+    pub fn ask_text(prompt: &str, default: &str) -> String {
+        Text::new(prompt)
+            .with_default(default)
+            .prompt()
+            .unwrap_or_else(|_| default.to_string())
     }
 }

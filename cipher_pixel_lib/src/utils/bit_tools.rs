@@ -55,4 +55,11 @@ impl BitTools {
 
         String::from_utf8_lossy(&bytes).into_owned()
     }
+
+        // En bit_tools.rs
+    pub fn string_to_bits_raw(message: &str) -> Vec<u8> {
+        message.as_bytes().iter()
+            .flat_map(|&b| (0..8).rev().map(move |i| (b >> i) & 1))
+            .collect()
+    }
 }

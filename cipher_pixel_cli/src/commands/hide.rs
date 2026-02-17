@@ -41,7 +41,7 @@ pub fn exec_hide(image_path: &str, file_to_hide: &str, password: &str, output_pa
     Interface::info(&format!("Inyectando bits en la imagen: {}...", image_path));
 
     for i in 1..=100 {
-        Interface::progress_bar(i, 100);
+        Interface::progress_bar(i, 50);
         // Ajustamos la velocidad (10ms * 100 = 1 segundo de animación)
         thread::sleep(Duration::from_millis(10)); 
     }

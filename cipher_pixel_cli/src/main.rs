@@ -86,20 +86,25 @@ enum Commands {
 }
 
 fn main() {
-    // El banner siempre se muestra al inicio para dar identidad a la herramienta
+    let cli_result = Cli::try_parse();
 
-    let cli = Cli::parse();
-
-    Interface::welcome_banner();
-
-    match &cli.command {
-        Commands::Hide { image, file, pass, output } => {
-            // Lógica para ocultar
-            commands::hide::exec_hide(image, file, pass, output);
+    match cli_result {
+        // Si el usuario pasó argumentos (ej: cipherpixel hide -i ...)
+        Ok(cli) => {
+            Interface::welcome_banner();
+            match &cli.command {
+                Commands::Hide { image, file, pass, output } => {
+                    commands::hide::exec_hide(image, file, pass, output);
+                }
+                Commands::Extract { image, pass, output } => {
+                    commands::extract::exec_extract(image, pass, output);
+                }
+            }
         }
-        Commands::Extract { image, pass, output } => {
-            // Lógica para extraer (La nueva ruta que conecta con save_file)
-            commands::extract::exec_extract(image, pass, output);
+        // Si el usuario ejecutó solo "cipherpixel", lanzamos el modo interactivo
+        Err(_) => {
+            Interface::welcome_banner();
+            commands::interactive::run_interactive_mode();
         }
     }
 }
